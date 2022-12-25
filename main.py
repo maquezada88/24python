@@ -1,4 +1,5 @@
 from help import *
+import json
 
 
 def main():
@@ -15,7 +16,11 @@ def main():
         if(difficulty.isdigit()):
             difficulty = int(difficulty)
             valid_difficulty = validate_difficulty(difficulty)
-        print(difficulty)
+        else:
+            print("Error. Please enter a digit between 1-3")
+    
+    nums = get_set_of_numbers(difficulty)
+    print(nums)
 
 
 if __name__ == "__main__":
