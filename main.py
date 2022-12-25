@@ -20,8 +20,11 @@ def main():
             print("Error. Please enter a digit between 1-3")
     
     nums = get_set_of_numbers(difficulty)
-    print(nums)
+    print("your set of numbers are:", nums)
+    usage()
 
+    exp = input("Enter your first expression.")
+    validate_expression(exp, nums)
 
 if __name__ == "__main__":
     main()
