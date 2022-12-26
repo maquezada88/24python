@@ -49,37 +49,56 @@ def validate_difficulty(difficulty):
 
 def validate_expression(expression, nums):
     exp = expression.strip() #remove leading and trail spaces 
-    split_exp = exp.split(" ") #split up by spaces to get operands and operators
-    
-    valid = validate_expression_helper(split_exp, nums)
-    if(valid == False):
+
+    op = validate_operator(expression) #get and validate operator
+    if(op == 'E'):
         return False
     
+    split_exp = exp.split(op) #split up by operator
+    
+    if validate_expression_helper(split_exp, nums):
+        print("nums in validate_expression: ", nums)
 
     return True
 
-def validate_expression_helper(exp, nums):
+def validate_operator(expression):
+
+    if('+' in expression ):
+        return '+'
+    elif('-' in expression):
+        return '-'
+    elif('*' in expression):
+        return '*'
+    elif('/' in expression):
+        return '/'
+    else:
+        print("ERROR. NO VALID OPERATORS FOUND IN STRING.")
+        return 'E'
+
+def validate_expression_helper(split_exp, nums):
     #make sure both operands are integers
-    if(int(split_exp[0])==False or int(split_exp[2]) == False):
+    if(int(split_exp[0])==False or int(split_exp[1]) == False):
         print("ERROR. OPERANDS NEED TO BE INTEGERS.")
-        return False
-    
-    #make sure operator is of four listed
-    if(split_exp[1] != '+' or split_exp[1] != '/' or split_exp[1] != '-' or split_exp[1] != '*'):
-        print("ERROR. OPERAND IS NOT '+', '/', '*', OR '-'")
         return False
 
     #make sure the operands are in the list. need to truncate list after checking first operand.
     flag = False
-    if split_exp[0] in nums:
+    if int(split_exp[0]) in nums:
         flag = True
     else:
         print("ERROR FIRST VALUE NOT IN LIST:", split_exp[0])
+        print("NUMS IN LIST:", nums)
+        print("split list:", split_exp)
+        return False
     
-    if( split_exp[2] in nums):
+    nums.remove(int(split_exp[0]))
+
+    if int(split_exp[1]) in nums:
         flag = True
+        nums.remove(int(split_exp[1]))
     else:
-        print("ERROR. SECOND VALUE NOT IN LIST:", split_exp[2])
+        print("ERROR. SECOND VALUE NOT IN LIST:", split_exp[1])
+        print("NUMS IN LIST:", nums)
         return False
     
     return flag
