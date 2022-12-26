@@ -11,7 +11,7 @@ def main():
     print("Enter 3 for hard.")
 
     while valid_difficulty == False:
-
+        #gets difficulty and validates it
         difficulty = input('Choose the difficulty you wish to play on.')
         if(difficulty.isdigit()):
             difficulty = int(difficulty)
@@ -19,10 +19,13 @@ def main():
         else:
             print("Error. Please enter a digit between 1-3")
     
+    #get set of numbers
     nums = get_set_of_numbers(difficulty)
     print("your set of numbers are:", nums)
+
     usage()
 
+    #gets expression and validates it
     exp = input("Enter your first expression.")
     validate_expression(exp, nums)
 
