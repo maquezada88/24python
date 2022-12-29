@@ -57,9 +57,25 @@ def validate_expression(expression, nums):
     split_exp = exp.split(op) #split up by operator
     
     if validate_expression_helper(split_exp, nums):
-        print("nums in validate_expression: ", nums)
+        result = get_result(nums, op, split_exp)
+        nums.append(result)
+        return True
+    else:
+        return False
 
-    return True
+
+def get_result(nums, op, split_exp):
+    if('+' == op ):
+        return int(split_exp[0])+int(split_exp[1])
+    elif('-' == op):
+        return int(split_exp[0])-int(split_exp[1])
+    elif('*' == op):
+        return int(split_exp[0])*int(split_exp[1])
+    elif('/' == op):
+        return int(split_exp[0])+int(split_exp[1])
+    else:
+        print("ERROR. NO VALID OPERATORS FOUND IN STRING.")
+        return 'E'
 
 def validate_operator(expression):
 
@@ -102,3 +118,21 @@ def validate_expression_helper(split_exp, nums):
         return False
     
     return flag
+
+
+    def validate_final(exp,nums):
+        exp = expression.strip() #remove leading and trail spaces
+
+        op = validate_operator(expression) #get and validate operator
+
+        if(op == 'E'):
+            return False
+
+        split_exp = exp.split(op) #split up by operator
+
+        if validate_expression_helper(split_exp, nums):
+            result = get_result(nums, op, split_exp)
+            nums.append(result)
+            return True
+        else:
+            return False
