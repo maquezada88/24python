@@ -4,6 +4,7 @@ import json
 
 def main():
     valid_difficulty = False
+    valid_exp = False
     difficulty = -1
 
     print("Enter 1 for easy.")
@@ -22,12 +23,37 @@ def main():
     #get set of numbers
     nums = get_set_of_numbers(difficulty)
     print("your set of numbers are:", nums)
-
     usage()
 
     #gets expression and validates it
-    exp = input("Enter your first expression.")
-    validate_expression(exp, nums)
+    while(valid_exp == False):
+        exp = input("Enter your first expression.")
+        valid_exp = validate_expression(exp, nums)
+    
+    print("This is your list now: ", nums)
+    usage()
+
+    valid_exp = False
+
+    #gets expression and validates it
+    while(valid_exp == False):
+        exp = input("Enter your second expression.")
+        valid_exp = validate_expression(exp, nums)
+
+    print("This is your list now: ", nums)
+
+    valid_exp = False
+     #gets expression and validates it
+    while(valid_exp == False):
+        exp = input("Enter your second expression.")
+        valid_exp = validate_expression(exp, nums)
+
+    if(nums[0] == 24):
+        print("Congrats you win")
+    else:
+        print("yall losers")
+
+    
 
 if __name__ == "__main__":
     main()
