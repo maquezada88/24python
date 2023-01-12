@@ -51,7 +51,7 @@ def main():
     if(nums[0] == 24):
         print("Congrats you win")
     else:
-        print("yall losers")
+        print("you lose")
 
     
 
